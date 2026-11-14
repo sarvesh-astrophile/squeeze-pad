@@ -1,59 +1,74 @@
-//
-//  ContentView.swift
-//  SqueezePad
-//
-//  Created by FCI on 07/11/26.
-//
-
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @State private var draft = "  hello   world\n\n  second    line  "
+    @State private var result = ""
+
+    @AppStorage("collapseBlankLines") private var collapseBlankLines = true
+    @AppStorage("uppercaseResult") private var uppercaseResult = false
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        VStack(spacing: 12) {
+            Text("Squeeze")
+                .font(.largeTitle)
+
+            TextEditor(text: $draft)
+                .font(.system(.body, design: .monospaced))
+                .frame(minHeight: 120)
+                .overlay(RoundedRectangle(cornerRadius: 8).stroke(.quaternary))
+
+            HStack {
+                Button {
+                    result = squeeze(draft)
+                } label: {
+                    Label("Squeeze Text", systemImage: "wand.and.stars")
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+                .keyboardShortcut("s", modifiers: [.command, .shift])   // ← ⌘⇧S
+                .buttonStyle(.borderedProminent)
+
+                Text("⌘⇧S")
+                    .foregroundStyle(.secondary)
+
+                Spacer()
+
+                SettingsLink {
+                    Text("Settings…")
                 }
             }
-        } detail: {
-            Text("Select an item")
+
+            ScrollView {
+                Text(result.isEmpty ? "Result appears here…" : result)
+                    .font(.system(.body, design: .monospaced))
+                    .textSelection(.enabled)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .frame(minHeight: 120)
+            .overlay(RoundedRectangle(cornerRadius: 8).stroke(.quaternary))
+
+            Spacer() 
+        }
+        .padding()
+        .onAppear { print("ContentView appeared") }
+        .onDisappear { print("ContentView disappeared") }
+        .onChange(of: scenePhase) { _, newPhase in
+            print("scenePhase changed to: \(newPhase)")
         }
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+    private func squeeze(_ input: String) -> String {
+        var lines: [String] = []
+        for rawLine in input.components(separatedBy: .newlines) {
+            let words = rawLine.components(separatedBy: .whitespaces).filter { !$0.isEmpty }
+            var line = words.joined(separator: " ")
+            if uppercaseResult { line = line.uppercased() }
+            if line.isEmpty {
+                if collapseBlankLines { continue }
+                lines.append("")
+            } else {
+                lines.append(line)
             }
         }
+        return lines.joined(separator: "\n")
     }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
