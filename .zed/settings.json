@@ -1,0 +1,13 @@
+{
+  "languages": {
+    "Swift": {
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "xcrun",
+          "arguments": ["swift-format", "format", "-"]
+        }
+      }
+    }
+  }
+}

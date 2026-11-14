@@ -2,14 +2,28 @@ import SwiftUI
 
 @main
 struct SqueezePadApp: App {
+    @State private var appModel = AppModel()
+    
     var body: some Scene {
-        WindowGroup {
+        Window("SqueezePad", id: "main") {
             ContentView()
+                .environment(appModel)
         }
-        .defaultSize(width: 640, height: 540)
-
+        .defaultSize(width: 680, height: 560)
+        .windowResizability(.contentSize)
+        .commands {
+            CommandMenu("Squeeze") {
+                Button("Squeeze Text") {
+                    appModel.squeeze()
+                }
+                .keyboardShortcut("s", modifiers: [.command, .shift])
+            }
+            
+        }
+        
         Settings {
             SettingsView()
+                .environment(appModel)
         }
     }
 }
