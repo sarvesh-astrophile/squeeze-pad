@@ -53,6 +53,7 @@ final class AppModel {
       uppercase: uppercaseResult,
       collapseBlankLines: collapseBlankLines
     )
+    
     statusMessage = nil
   }
 }

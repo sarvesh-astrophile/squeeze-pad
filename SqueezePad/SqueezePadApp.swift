@@ -3,7 +3,7 @@ import SwiftUI
 @main
 struct SqueezePadApp: App {
     @State private var appModel = AppModel()
-    
+
     var body: some Scene {
         Window("SqueezePad", id: "main") {
             ContentView()
@@ -18,9 +18,7 @@ struct SqueezePadApp: App {
                 }
                 .keyboardShortcut("s", modifiers: [.command, .shift])
             }
-            
         }
-        
         Settings {
             SettingsView()
                 .environment(appModel)
