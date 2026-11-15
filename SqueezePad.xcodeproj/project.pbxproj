@@ -6,6 +6,10 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		97268C2EC941439CBC5F12B3 /* SqueezeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0192B9EB29E4446682BE55BA /* SqueezeKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		65C85FE2309F315900CAF861 /* SqueezePad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SqueezePad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -22,6 +26,7 @@
 		65C85FDF309F315900CAF861 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				97268C2EC941439CBC5F12B3 /* SqueezeKit in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -60,6 +65,9 @@
 				65C85FE4309F315900CAF861 /* SqueezePad */,
 			);
 			name = SqueezePad;
+			packageProductDependencies = (
+				0192B9EB29E4446682BE55BA /* SqueezeKit */,
+			);
 			productName = SqueezePad;
 			productReference = 65C85FE2309F315900CAF861 /* SqueezePad.app */;
 			productType = "com.apple.product-type.application";
@@ -88,6 +96,9 @@
 			);
 			mainGroup = 65C85FD9309F315900CAF861;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				97920A9B1BC24CF1B34AC2AA /* XCLocalSwiftPackageReference "SqueezeKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 65C85FE3309F315900CAF861 /* Products */;
 			projectDirPath = "";
@@ -243,15 +254,15 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_CFBundleDisplayName = "Squeeze Pad";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 reetlab";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.reetlab.SqueezePad;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reetlab.squeezepad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -273,15 +284,15 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_CFBundleDisplayName = "Squeeze Pad";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 reetlab";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.reetlab.SqueezePad;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reetlab.squeezepad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -313,6 +324,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		97920A9B1BC24CF1B34AC2AA /* XCLocalSwiftPackageReference "SqueezeKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = SqueezeKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0192B9EB29E4446682BE55BA /* SqueezeKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97920A9B1BC24CF1B34AC2AA /* XCLocalSwiftPackageReference "SqueezeKit" */;
+			productName = SqueezeKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65C85FDA309F315900CAF861 /* Project object */;
 	validationLevel = 1;
